@@ -22,8 +22,16 @@ export default class Contacts extends React.Component {
 				</p>
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
-						<ContactCard />
-					
+						<Context.Consumer>
+							{({store, actions}) => {
+								return store.contacts.map((item, index) => {
+									return(
+										<ContactCard id={index} key={index} onDelete={() => this.setState({ showModal: true, modalId: index})} />
+									);
+								});
+							}}
+						</Context.Consumer>
+
 					</ul>
 				</div>
 			</div>

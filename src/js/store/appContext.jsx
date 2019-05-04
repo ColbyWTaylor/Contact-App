@@ -7,13 +7,8 @@ const Store = PassedComponent => {
 	class StoreWrapper extends React.Component {
 		constructor(props) {
 			super(props);
-			this.state = getState({
-				getStore: () => this.state.store,
-				setStore: updatedStore =>
-					this.setState({
-						store: Object.assign(this.state.store, updatedStore)
-					})
-			});
+			this.state = getState(this);
+				
 		}
 
 		componentDidMount() {
